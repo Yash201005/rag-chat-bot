@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CitationSource } from '../../types/frontend.js';
+import { CitationSource } from '../../types/frontend';
 import { FileText, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
 
 interface Props {

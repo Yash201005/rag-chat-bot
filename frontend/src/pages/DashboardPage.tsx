@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from 'react';
-import { useAppStore } from '../store/useAppStore.js';
-import { apiService } from '../services/api.js';
-import { CitationSource, RAGMetrics } from '../types/frontend.js';
-import { Sidebar } from '../components/sidebar/Sidebar.js';
-import { ChatWindow } from '../components/chat/ChatWindow.js';
-import { UploadDialog } from '../components/documents/UploadDialog.js';
-import { SettingsPanel } from '../components/settings/SettingsPanel.js';
-import { MetricsPanel } from '../components/analytics/MetricsPanel.js';
-import { ToastProvider } from '../components/common/ToastProvider.js';
+import { useAppStore } from '../store/useAppStore';
+import { apiService } from '../services/api';
+import { CitationSource, RAGMetrics } from '../types/frontend';
+import { Sidebar } from '../components/sidebar/Sidebar';
+import { ChatWindow } from '../components/chat/ChatWindow';
+import { UploadDialog } from '../components/documents/UploadDialog';
+import { SettingsPanel } from '../components/settings/SettingsPanel';
+import { MetricsPanel } from '../components/analytics/MetricsPanel';
+import { ToastProvider } from '../components/common/ToastProvider';
 import toast from 'react-hot-toast';
 
 export const DashboardPage: React.FC = () => {
@@ -86,7 +86,7 @@ export const DashboardPage: React.FC = () => {
           updateLastMessage(sessionId, '', sources, metrics);
           setIsStreaming(false);
         },
-        onError: (err: any) => {
+        onError: (err: Error) => {
           toast.error(err.message || 'Stream processing error.');
           updateLastMessage(
             sessionId,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { DashboardPage } from './pages/DashboardPage.js';
+import { DashboardPage } from './pages/DashboardPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {

@@ -1,17 +1,18 @@
 import { Request, Response, NextFunction } from 'express';
 import { RAGPipeline } from '../rag/RAGPipeline';
+import { CitationSource, RAGMetrics } from '../types/index';
 import { z } from 'zod';
 
 const chatRequestSchema = z.object({
-  question: z.string().min(1, 'Question cannot be empty'),
-  sessionId: z.string().default('default-session'),
+  question: z.string().min(1, 'Question is required'),
+  sessionId: z.string().optional().default('default-session'),
   namespace: z.string().optional(),
-  topK: z.number().min(1).max(20).optional(),
-  similarityThreshold: z.number().min(0).max(1).optional(),
-  searchType: z.enum(['similarity', 'mmr']).optional(),
-  temperature: z.number().min(0).max(1).optional(),
-  maxTokens: z.number().min(100).max(4096).optional(),
-  stream: z.boolean().default(true),
+  topK: z.number().int().positive().optional().default(4),
+  similarityThreshold: z.number().min(0).max(1).optional().default(0.5),
+  searchType: z.enum(['similarity', 'mmr']).optional().default('similarity'),
+  temperature: z.number().min(0).max(2).optional().default(0.7),
+  maxTokens: z.number().int().positive().optional().default(1024),
+  stream: z.boolean().optional().default(false),
 });
 
 export class ChatController {
@@ -48,8 +49,8 @@ export class ChatController {
       } else {
         // Standard JSON aggregate completion
         let fullAnswer = '';
-        let sources: any[] = [];
-        let metrics: any = null;
+        let sources: CitationSource[] = [];
+        let metrics: RAGMetrics | null = null;
 
         const streamGen = this.ragPipeline.executeQueryStream({
           question: validated.question,

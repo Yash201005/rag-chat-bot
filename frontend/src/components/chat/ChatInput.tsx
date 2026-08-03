@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Square, Paperclip, SlidersHorizontal, Sparkles, UploadCloud } from 'lucide-react';
-import { useAppStore } from '../../store/useAppStore.js';
+import { useAppStore } from '../../store/useAppStore';
 import toast from 'react-hot-toast';
 
 interface Props {

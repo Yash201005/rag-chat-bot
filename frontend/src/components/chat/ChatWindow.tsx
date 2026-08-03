@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { useAppStore } from '../../store/useAppStore.js';
-import { MessageBubble } from './MessageBubble.js';
-import { TypingIndicator } from './TypingIndicator.js';
-import { ChatInput } from './ChatInput.js';
-import { OnboardingUploadScreen } from '../documents/OnboardingUploadScreen.js';
+import { useAppStore } from '../../store/useAppStore';
+import { MessageBubble } from './MessageBubble';
+import { TypingIndicator } from './TypingIndicator';
+import { ChatInput } from './ChatInput';
+import { OnboardingUploadScreen } from '../documents/OnboardingUploadScreen';
 import { Bot, Download, Trash2, Cpu, ShieldCheck, FileText, Plus, CheckCircle2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 

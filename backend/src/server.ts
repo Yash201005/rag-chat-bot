@@ -10,7 +10,7 @@ const server = app.listen(env.PORT, () => {
   logger.info(`Pinecone Index Target: ${env.PINECONE_INDEX}`);
 });
 
-server.on('error', (err: any) => {
+server.on('error', (err: NodeJS.ErrnoException) => {
   if (err.code === 'EADDRINUSE') {
     logger.error(`Port ${env.PORT} is already in use. Clean up the process on port ${env.PORT} or set PORT in .env.`);
     process.exit(1);

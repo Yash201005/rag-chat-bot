@@ -1,7 +1,9 @@
 import axios from 'axios';
-import { DocumentRecord, ChatSession, SystemMetrics, CitationSource, RAGMetrics } from '../types/frontend.js';
+import { DocumentRecord, ChatSession, SystemMetrics, CitationSource, RAGMetrics } from '../types/frontend';
 
-const API_BASE = '/api';
+const API_BASE =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.PROD ? 'https://rag-chat-bot-749k.onrender.com/api' : '/api');
 
 export const apiClient = axios.create({
   baseURL: API_BASE,
@@ -61,7 +63,7 @@ export const apiService = {
 
   // Metrics & Health
   async fetchMetrics() {
-    const response = await apiClient.get<{ metrics: SystemMetrics; vectorStoreStats: any }>('/metrics');
+    const response = await apiClient.get<{ metrics: SystemMetrics; vectorStoreStats: Record<string, unknown> }>('/metrics');
     return response.data;
   },
 
@@ -125,9 +127,13 @@ export const apiService = {
           }
         }
       }
-    } catch (err: any) {
-      if (err.name !== 'AbortError') {
-        callbacks.onError(err);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        if (err.name !== 'AbortError') {
+          callbacks.onError(err);
+        }
+      } else {
+        callbacks.onError(new Error(String(err)));
       }
     }
   },

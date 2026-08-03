@@ -28,17 +28,17 @@ export interface IEmbeddingService {
 
 export interface IPineconeService {
   upsertVectors(
-    vectors: { id: string; values: number[]; metadata: Record<string, any> }[],
+    vectors: { id: string; values: number[]; metadata: Record<string, unknown> }[],
     namespace?: string
   ): Promise<void>;
   searchVectors(
     queryVector: number[],
     topK: number,
-    filter?: Record<string, any>,
+    filter?: Record<string, unknown>,
     namespace?: string
   ): Promise<VectorSearchResult[]>;
   deleteVectorsByDocumentId(documentId: string, namespace?: string): Promise<void>;
-  getIndexStats(): Promise<{ totalVectorCount: number; namespaces: Record<string, any> }>;
+  getIndexStats(): Promise<{ totalVectorCount: number; namespaces: Record<string, unknown> }>;
 }
 
 export interface IRAGQueryOptions {

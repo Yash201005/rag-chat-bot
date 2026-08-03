@@ -1,4 +1,5 @@
 import multer from 'multer';
+import { Request } from 'express';
 import path from 'path';
 import fs from 'fs';
 import { env } from '../config/environment';
@@ -17,7 +18,7 @@ const storage = multer.diskStorage({
   },
 });
 
-const fileFilter = (_req: any, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
+const fileFilter = (_req: Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
   const allowedExtensions = ['.pdf', '.txt', '.docx', '.md', '.csv', '.html'];
   const ext = path.extname(file.originalname).toLowerCase();
 

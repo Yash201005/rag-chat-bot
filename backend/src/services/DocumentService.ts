@@ -126,9 +126,10 @@ export class DocumentService {
       await fs.unlink(filePath).catch(() => {});
 
       return docRecord;
-    } catch (error: any) {
-      logger.error(`Error ingesting document '${originalName}': ${error.message}`);
-      this.docRepo.updateStatus(documentId, 'error', error.message);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      logger.error(`Error ingesting document '${originalName}': ${errorMessage}`);
+      this.docRepo.updateStatus(documentId, 'error', errorMessage);
       await fs.unlink(filePath).catch(() => {});
       throw error;
     }

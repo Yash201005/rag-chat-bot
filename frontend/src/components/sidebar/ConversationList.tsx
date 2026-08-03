@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAppStore } from '../../store/useAppStore.js';
+import { useAppStore } from '../../store/useAppStore';
 import { MessageSquare, Trash2, Search } from 'lucide-react';
 
 export const ConversationList: React.FC = () => {

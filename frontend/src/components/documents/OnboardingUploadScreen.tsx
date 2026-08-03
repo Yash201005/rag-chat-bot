@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { useAppStore } from '../../store/useAppStore.js';
-import { apiService } from '../../services/api.js';
+import axios from 'axios';
+import { useAppStore } from '../../store/useAppStore';
+import { apiService } from '../../services/api';
 import { UploadCloud, FileText, CheckCircle2, Loader2, X, Sliders } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -46,8 +47,14 @@ export const OnboardingUploadScreen: React.FC<Props> = ({ onSuccess }) => {
       toast.success('✓ Document indexed successfully. You can now ask questions.');
       setSelectedFiles([]);
       onSuccess();
-    } catch (err: any) {
-      toast.error(err.response?.data?.error || 'Failed to process document upload.');
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        toast.error(err.response?.data?.error || 'Failed to process document upload.');
+      } else if (err instanceof Error) {
+        toast.error(err.message);
+      } else {
+        toast.error('Failed to process document upload.');
+      }
     } finally {
       setUploading(false);
     }

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { ChatSession, ChatMessage, DocumentRecord, SystemMetrics, AppSettings } from '../types/frontend.js';
+import { ChatSession, ChatMessage, DocumentRecord, SystemMetrics, AppSettings, CitationSource, RAGMetrics } from '../types/frontend';
 
 interface AppState {
   sessions: ChatSession[];
@@ -20,7 +20,7 @@ interface AppState {
   
   setMessages: (sessionId: string, messages: ChatMessage[]) => void;
   addMessage: (sessionId: string, message: ChatMessage) => void;
-  updateLastMessage: (sessionId: string, textChunk: string, sources?: any[], metrics?: any) => void;
+  updateLastMessage: (sessionId: string, textChunk: string, sources?: CitationSource[], metrics?: RAGMetrics) => void;
   
   setDocuments: (documents: DocumentRecord[]) => void;
   addDocument: (doc: DocumentRecord) => void;

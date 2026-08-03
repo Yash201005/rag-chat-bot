@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { ChatMessage } from '../../types/frontend.js';
-import { MarkdownRenderer } from './MarkdownRenderer.js';
-import { SourceCard } from './SourceCard.js';
+import { ChatMessage } from '../../types/frontend';
+import { MarkdownRenderer } from './MarkdownRenderer';
+import { SourceCard } from './SourceCard';
 import { Bot, User, Copy, Check, Clock, Cpu, Layers, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 

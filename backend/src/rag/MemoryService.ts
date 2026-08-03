@@ -1,5 +1,5 @@
 import { SessionRepository } from '../repositories/SessionRepository';
-import { ChatMessage } from '../types/index';
+import { ChatMessage, CitationSource, RAGMetrics } from '../types/index';
 
 export class MemoryService {
   private repository: SessionRepository;
@@ -34,8 +34,8 @@ export class MemoryService {
   public saveAssistantMessage(
     sessionId: string,
     text: string,
-    sources?: any[],
-    metrics?: any
+    sources?: CitationSource[],
+    metrics?: RAGMetrics
   ): ChatMessage {
     const message: ChatMessage = {
       id: `msg-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,

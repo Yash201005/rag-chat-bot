@@ -81,9 +81,10 @@ export class EmbeddingService implements IEmbeddingService {
         }
         // Fallback to local feature vector calculation if API fails or unavailable
         return batch.map((text) => this.generateLocalFallbackEmbedding(text));
-      } catch (error: any) {
+      } catch (error: unknown) {
         attempt++;
-        logger.warn(`HuggingFace Embedding attempt ${attempt} failed: ${error.message}`);
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        logger.warn(`HuggingFace Embedding attempt ${attempt} failed: ${errorMessage}`);
         if (attempt >= retries) {
           logger.error('Embedding service retries exhausted. Returning local fallback embeddings.');
           return batch.map((text) => this.generateLocalFallbackEmbedding(text));

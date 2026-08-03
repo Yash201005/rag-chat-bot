@@ -1,4 +1,4 @@
-import { Pinecone } from '@pinecone-database/pinecone';
+import { Pinecone, RecordMetadata } from '@pinecone-database/pinecone';
 import { IPineconeService } from '../interfaces/index';
 import { VectorSearchResult, ChunkMetadata } from '../types/index';
 import { env } from '../config/environment';
@@ -7,7 +7,7 @@ import { logger } from '../config/logger';
 interface InMemoryVectorRecord {
   id: string;
   values: number[];
-  metadata: Record<string, any>;
+  metadata: Record<string, unknown>;
   namespace: string;
 }
 
@@ -24,8 +24,9 @@ export class PineconeService implements IPineconeService {
           apiKey: env.PINECONE_API_KEY,
         });
         logger.info(`PineconeService initialized targeting index '${this.indexName}'.`);
-      } catch (error: any) {
-        logger.error(`Pinecone initialization failed: ${error.message}. Switching to in-memory vector store fallback.`);
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
+        logger.error(`Pinecone initialization failed: ${message}. Switching to in-memory vector store fallback.`);
       }
     } else {
       logger.warn('PINECONE_API_KEY not set. PineconeService operating in in-memory vector store fallback mode.');
@@ -33,7 +34,7 @@ export class PineconeService implements IPineconeService {
   }
 
   public async upsertVectors(
-    vectors: { id: string; values: number[]; metadata: Record<string, any> }[],
+    vectors: { id: string; values: number[]; metadata: Record<string, unknown> }[],
     namespace: string = env.PINECONE_NAMESPACE
   ): Promise<void> {
     if (vectors.length === 0) return;
@@ -44,12 +45,13 @@ export class PineconeService implements IPineconeService {
         const batchSize = 100;
         for (let i = 0; i < vectors.length; i += batchSize) {
           const batch = vectors.slice(i, i + batchSize);
-          await index.namespace(namespace).upsert(batch);
+          await index.namespace(namespace).upsert(batch as unknown as Parameters<ReturnType<typeof this.client.index>['upsert']>[0]);
         }
         logger.info(`Upserted ${vectors.length} vectors to Pinecone namespace '${namespace}'.`);
         return;
-      } catch (error: any) {
-        logger.warn(`Pinecone upsert error: ${error.message}. Storing in memory fallback.`);
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
+        logger.warn(`Pinecone upsert error: ${message}. Storing in memory fallback.`);
       }
     }
 
@@ -70,13 +72,13 @@ export class PineconeService implements IPineconeService {
   public async searchVectors(
     queryVector: number[],
     topK: number = env.TOP_K,
-    filter?: Record<string, any>,
+    filter?: RecordMetadata,
     namespace: string = env.PINECONE_NAMESPACE
   ): Promise<VectorSearchResult[]> {
     if (this.client) {
       try {
         const index = this.client.index(this.indexName);
-        const queryOptions: any = {
+        const queryOptions: { vector: number[]; topK: number; includeMetadata: boolean; filter?: RecordMetadata } = {
           vector: queryVector,
           topK,
           includeMetadata: true,
@@ -94,8 +96,9 @@ export class PineconeService implements IPineconeService {
           score: match.score || 0,
           metadata: (match.metadata || {}) as unknown as ChunkMetadata,
         }));
-      } catch (error: any) {
-        logger.warn(`Pinecone query failed: ${error.message}. Falling back to in-memory search.`);
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
+        logger.warn(`Pinecone query failed: ${message}. Falling back to in-memory search.`);
       }
     }
 
@@ -185,8 +188,9 @@ export class PineconeService implements IPineconeService {
           filter: { documentId: { $eq: documentId } },
         });
         logger.info(`Deleted Pinecone vectors for document '${documentId}' in namespace '${namespace}'.`);
-      } catch (error: any) {
-        logger.warn(`Pinecone delete failed: ${error.message}. Cleaning in-memory fallback store.`);
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
+        logger.warn(`Pinecone delete failed: ${message}. Cleaning in-memory fallback store.`);
       }
     }
 
@@ -195,17 +199,18 @@ export class PineconeService implements IPineconeService {
     );
   }
 
-  public async getIndexStats(): Promise<{ totalVectorCount: number; namespaces: Record<string, any> }> {
+  public async getIndexStats(): Promise<{ totalVectorCount: number; namespaces: Record<string, unknown> }> {
     if (this.client) {
       try {
         const index = this.client.index(this.indexName);
         const stats = await index.describeIndexStats();
         return {
           totalVectorCount: stats.totalRecordCount || 0,
-          namespaces: stats.namespaces || {},
+          namespaces: (stats.namespaces as unknown as Record<string, unknown>) || {},
         };
-      } catch (error: any) {
-        logger.warn(`Pinecone stats failed: ${error.message}. Returning memory stats.`);
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
+        logger.warn(`Pinecone stats failed: ${message}. Returning memory stats.`);
       }
     }
 

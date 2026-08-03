@@ -1,6 +1,6 @@
 import React from 'react';
 import { Moon, Sun } from 'lucide-react';
-import { useAppStore } from '../../store/useAppStore.js';
+import { useAppStore } from '../../store/useAppStore';
 
 export const ThemeToggle: React.FC = () => {
   const { settings, toggleTheme } = useAppStore();

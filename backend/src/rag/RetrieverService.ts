@@ -73,8 +73,9 @@ export class RetrieverService {
         } else {
           logger.info(`Rephrased query skipped or invalid, using original query: "${query}"`);
         }
-      } catch (err: any) {
-        logger.warn(`History-aware rephrasing error: ${err.message}. Using original query.`);
+      } catch (err: unknown) {
+        const message = err instanceof Error ? err.message : String(err);
+        logger.warn(`History-aware rephrasing error: ${message}. Using original query.`);
       }
     }
 

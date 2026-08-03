@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppStore } from '../../store/useAppStore.js';
+import { useAppStore } from '../../store/useAppStore';
 import { X, Settings, Sliders, Cpu, Database, Save } from 'lucide-react';
 import toast from 'react-hot-toast';
 

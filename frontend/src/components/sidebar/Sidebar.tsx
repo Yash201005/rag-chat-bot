@@ -1,7 +1,7 @@
 import React from 'react';
-import { useAppStore } from '../../store/useAppStore.js';
-import { ConversationList } from './ConversationList.js';
-import { ThemeToggle } from '../common/ThemeToggle.js';
+import { useAppStore } from '../../store/useAppStore';
+import { ConversationList } from './ConversationList';
+import { ThemeToggle } from '../common/ThemeToggle';
 import { Plus, FileText, Settings, Activity, Cpu, Layers } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {

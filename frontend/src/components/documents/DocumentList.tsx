@@ -1,7 +1,7 @@
 import React from 'react';
-import { useAppStore } from '../../store/useAppStore.js';
-import { apiService } from '../../services/api.js';
-import { formatBytes } from '../../lib/utils.js';
+import { useAppStore } from '../../store/useAppStore';
+import { apiService } from '../../services/api';
+import { formatBytes } from '../../lib/utils';
 import { FileText, Trash2, CheckCircle2, AlertTriangle, Layers } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -13,7 +13,7 @@ export const DocumentList: React.FC = () => {
       await apiService.deleteDocument(id);
       removeDocument(id);
       toast.success(`Deleted '${filename}' and associated vectors.`);
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast.error('Failed to delete document.');
     }
   };

@@ -1,5 +1,19 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import request from 'supertest';
+
+vi.mock('pdf-parse', () => {
+  return {
+    default: vi.fn().mockResolvedValue({
+      numpages: 1,
+      numrender: 1,
+      info: {},
+      metadata: null,
+      version: '1.0.0',
+      text: 'mock pdf content',
+    }),
+  };
+});
+
 import { createApp } from '../../src/app';
 
 const app = createApp();

@@ -87,9 +87,10 @@ export class GroqService {
         }
 
         return;
-      } catch (error: any) {
+      } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : String(error);
         logger.error(
-          `Groq streaming request failed: ${error.message}. Falling back to context synthesis stream.`
+          `Groq streaming request failed: ${errorMessage}. Falling back to context synthesis stream.`
         );
       }
     }

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useAppStore } from '../../store/useAppStore.js';
-import { apiService } from '../../services/api.js';
+import { useAppStore } from '../../store/useAppStore';
+import { apiService } from '../../services/api';
 import { X, Activity, Clock, Cpu, Database, RefreshCw, Zap } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export const MetricsPanel: React.FC = () => {
   const { isMetricsOpen, setMetricsOpen, systemMetrics, setSystemMetrics } = useAppStore();
-  const [vectorStats, setVectorStats] = useState<any>(null);
+  const [vectorStats, setVectorStats] = useState<{ totalVectorCount?: number; namespaces?: Record<string, unknown> } | null>(null);
   const [loading, setLoading] = useState(false);
 
   const fetchMetricsData = async () => {
@@ -15,7 +15,7 @@ export const MetricsPanel: React.FC = () => {
       const data = await apiService.fetchMetrics();
       setSystemMetrics(data.metrics);
       setVectorStats(data.vectorStoreStats);
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast.error('Failed to fetch platform metrics.');
     } finally {
       setLoading(false);
