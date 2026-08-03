@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import pdfParse from 'pdf-parse/lib/pdf-parse';
+import pdfParse from 'pdf-parse';
 import mammoth from 'mammoth';
 import Papa from 'papaparse';
 import * as cheerio from 'cheerio';
@@ -19,7 +19,7 @@ export class PDFDocumentLoader implements IDocumentLoader {
     const documents: LoadedDocument[] = [];
 
     if (pageTexts.length > 1) {
-      pageTexts.forEach((text, index) => {
+      pageTexts.forEach((text: string, index: number) => {
         const cleaned = TextCleaner.clean(text);
         if (cleaned.length > 0) {
           documents.push({
