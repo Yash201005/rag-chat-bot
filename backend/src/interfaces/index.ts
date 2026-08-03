@@ -5,7 +5,7 @@ import {
   RAGMetrics, 
   CitationSource,
   SearchType 
-} from '../types/index.js';
+} from '../types/index';
 
 export interface LoadedDocument {
   pageContent: string;

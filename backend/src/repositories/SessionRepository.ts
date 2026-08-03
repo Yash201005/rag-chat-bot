@@ -1,4 +1,4 @@
-import { ChatSession, ChatMessage } from '../types/index.js';
+import { ChatSession, ChatMessage } from '../types/index';
 import { v4 as uuidv4 } from 'uuid';
 
 export class SessionRepository {

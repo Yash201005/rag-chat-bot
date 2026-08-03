@@ -1,4 +1,4 @@
-import { ChunkMetadata, SupportedFileType } from '../types/index.js';
+import { ChunkMetadata, SupportedFileType } from '../types/index';
 import { v4 as uuidv4 } from 'uuid';
 
 export class MetadataGenerator {

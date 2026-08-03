@@ -1,5 +1,5 @@
-import { SessionRepository } from '../repositories/SessionRepository.js';
-import { ChatMessage } from '../types/index.js';
+import { SessionRepository } from '../repositories/SessionRepository';
+import { ChatMessage } from '../types/index';
 
 export class MemoryService {
   private repository: SessionRepository;

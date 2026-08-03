@@ -1,13 +1,13 @@
 import fs from 'fs/promises';
 import path from 'path';
-import pdfParse from 'pdf-parse';
+import pdfParse from 'pdf-parse/lib/pdf-parse';
 import mammoth from 'mammoth';
 import Papa from 'papaparse';
 import * as cheerio from 'cheerio';
-import { IDocumentLoader, LoadedDocument } from '../interfaces/index.js';
-import { SupportedFileType } from '../types/index.js';
-import { TextCleaner } from '../utils/textCleaner.js';
-import { logger } from '../config/logger.js';
+import { IDocumentLoader, LoadedDocument } from '../interfaces/index';
+import { SupportedFileType } from '../types/index';
+import { TextCleaner } from '../utils/textCleaner';
+import { logger } from '../config/logger';
 
 export class PDFDocumentLoader implements IDocumentLoader {
   async load(filePath: string, filename: string): Promise<LoadedDocument[]> {

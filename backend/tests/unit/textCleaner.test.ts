@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { TextCleaner } from '../../src/utils/textCleaner.js';
+import { TextCleaner } from '../../src/utils/textCleaner';
 
 describe('TextCleaner Utility', () => {
   it('should clean control characters and normalize newlines', () => {

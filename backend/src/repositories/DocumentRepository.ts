@@ -1,4 +1,4 @@
-import { DocumentRecord } from '../types/index.js';
+import { DocumentRecord } from '../types/index';
 
 export class DocumentRepository {
   private static instance: DocumentRepository;

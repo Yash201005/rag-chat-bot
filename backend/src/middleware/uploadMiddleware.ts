@@ -1,7 +1,7 @@
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
-import { env } from '../config/environment.js';
+import { env } from '../config/environment';
 
 if (!fs.existsSync(env.UPLOADS_DIR)) {
   fs.mkdirSync(env.UPLOADS_DIR, { recursive: true });

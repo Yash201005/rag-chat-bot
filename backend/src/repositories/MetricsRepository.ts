@@ -1,4 +1,4 @@
-import { AggregateMetrics, RAGMetrics } from '../types/index.js';
+import { AggregateMetrics, RAGMetrics } from '../types/index';
 
 export class MetricsRepository {
   private static instance: MetricsRepository;

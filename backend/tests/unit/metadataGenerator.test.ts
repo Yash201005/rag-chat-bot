@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { MetadataGenerator } from '../../src/utils/metadataGenerator.js';
+import { MetadataGenerator } from '../../src/utils/metadataGenerator';
 
 describe('MetadataGenerator Utility', () => {
   it('should generate valid chunk metadata with default values', () => {
