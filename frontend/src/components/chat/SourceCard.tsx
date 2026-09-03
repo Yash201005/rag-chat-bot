@@ -38,7 +38,7 @@ export const SourceCard: React.FC<Props> = ({ source, index }) => {
               source.similarityScore
             )}`}
           >
-            {source.similarityScore}% Match
+            Relevant to Question · {source.similarityScore}%
           </span>
           {expanded ? (
             <ChevronUp className="w-3.5 h-3.5 text-slate-400" />

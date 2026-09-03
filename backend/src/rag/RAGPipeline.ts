@@ -29,12 +29,27 @@ export class RAGPipeline {
   public async *executeQueryStream(
     options: IRAGQueryOptions
   ): AsyncGenerator<
-    { token?: string; isComplete?: boolean; sources?: CitationSource[]; metrics?: RAGMetrics },
+    {
+      token?: string;
+      isComplete?: boolean;
+      sources?: CitationSource[];
+      metrics?: RAGMetrics;
+    },
     void,
     unknown
   > {
     const startTime = Date.now();
-    const { question, sessionId, namespace, topK, similarityThreshold, searchType, temperature, maxTokens } = options;
+
+    const {
+      question,
+      sessionId,
+      namespace,
+      topK,
+      similarityThreshold,
+      searchType,
+      temperature,
+      maxTokens,
+    } = options;
 
     // 1. Save user query to conversation history
     this.memoryService.saveUserMessage(sessionId, question);
@@ -42,7 +57,7 @@ export class RAGPipeline {
     // 2. Fetch conversation history for context rephrasing
     const chatHistory = this.memoryService.getFormattedHistory(sessionId);
 
-    // 3. Perform retrieval (Similarity / MMR / History-aware)
+    // 3. Perform retrieval
     const retrievalResult = await this.retrieverService.retrieve({
       query: question,
       chatHistory,
@@ -52,23 +67,45 @@ export class RAGPipeline {
       namespace,
     });
 
-    const contextText = this.retrieverService.formatContextForPrompt(retrievalResult.chunks);
+    const contextText = this.retrieverService.formatContextForPrompt(
+      retrievalResult.chunks
+    );
 
-    // 4. Build Citation Sources from retrieved chunks with normalized relevance scores
+    // Diagnostic logging: verify retrieved chunks before prompt construction
+    logger.info(
+      `DEBUG RETRIEVAL: ${retrievalResult.chunks.length} chunk(s) retrieved.`
+    );
+
+    logger.info(`DEBUG CONTEXT:\n${contextText}`);
+
+    // 4. Build Citation Sources from retrieved chunks
     const sources: CitationSource[] = retrievalResult.chunks.map((chunk) => {
-      // Normalize raw Cosine Similarity float (e.g. 0.15 to 0.42) to intuitive 50%-98% relevance
+      // Normalize raw Cosine Similarity float to intuitive relevance score
       const rawScore = chunk.score;
+
       let relevanceScore = 0;
+
       if (rawScore > 0) {
         if (rawScore > 1) {
           relevanceScore = Math.min(100, Math.round(rawScore));
         } else {
           const minRaw = 0.15;
           const maxRaw = 0.42;
-          const normalized = Math.min(1.0, Math.max(0.1, (rawScore - minRaw) / (maxRaw - minRaw)));
-          relevanceScore = Number((50 + normalized * 48).toFixed(1));
+
+          const normalized = Math.min(
+            1.0,
+            Math.max(
+              0.1,
+              (rawScore - minRaw) / (maxRaw - minRaw)
+            )
+          );
+
+          relevanceScore = Number(
+            (50 + normalized * 48).toFixed(1)
+          );
         }
       }
+
       return {
         filename: chunk.metadata.filename,
         page: chunk.metadata.page,
@@ -79,15 +116,20 @@ export class RAGPipeline {
       };
     });
 
-    // 5. Format prompt with LCEL template
-    const formattedPrompt = await PromptService.RAG_PROMPT_TEMPLATE.format({
-      chat_history: chatHistory,
-      context: contextText,
-      question,
-    });
+    // 5. Format prompt with the retrieved context
+    const formattedPrompt =
+      await PromptService.RAG_PROMPT_TEMPLATE.format({
+        chat_history: chatHistory,
+        context: contextText,
+        question,
+      });
 
-    // 6. Stream Groq LLM completion
+    // Diagnostic logging: verify the exact prompt sent to GroqService
+    logger.info(`DEBUG RAG PROMPT:\n${formattedPrompt}`);
+
+    // 6. Stream LLM completion
     const generationStart = Date.now();
+
     let accumulatedText = '';
     let promptTokens = 0;
     let completionTokens = 0;
@@ -98,10 +140,14 @@ export class RAGPipeline {
       maxTokens,
     })) {
       accumulatedText += chunk.token;
+
       promptTokens = chunk.promptTokens;
       completionTokens = chunk.completionTokens;
 
-      yield { token: chunk.token, isComplete: false };
+      yield {
+        token: chunk.token,
+        isComplete: false,
+      };
     }
 
     const generationTimeMs = Date.now() - generationStart;
@@ -117,14 +163,23 @@ export class RAGPipeline {
       totalTokens: promptTokens + completionTokens,
     };
 
-    // 7. Persist assistant message & metrics
-    this.memoryService.saveAssistantMessage(sessionId, accumulatedText, sources, metrics);
+    // 7. Persist assistant message and metrics
+    this.memoryService.saveAssistantMessage(
+      sessionId,
+      accumulatedText,
+      sources,
+      metrics
+    );
+
     this.metricsRepo.recordQueryMetrics(metrics);
 
     logger.info(
-      `RAG Query completed in ${totalResponseTimeMs}ms (Retrieval: ${retrievalResult.retrievalTimeMs}ms, Gen: ${generationTimeMs}ms)`
+      `RAG Query completed in ${totalResponseTimeMs}ms ` +
+      `(Retrieval: ${retrievalResult.retrievalTimeMs}ms, ` +
+      `Gen: ${generationTimeMs}ms)`
     );
 
+    // 8. Send completion metadata
     yield {
       isComplete: true,
       sources,

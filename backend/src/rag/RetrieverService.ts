@@ -1,6 +1,9 @@
 import { EmbeddingService } from '../embeddings/EmbeddingService';
 import { PineconeService } from '../vectorstore/PineconeService';
-import { VectorSearchResult, SearchType } from '../types/index';
+import {
+  VectorSearchResult,
+  SearchType,
+} from '../types/index';
 import { GroqService } from '../services/GroqService';
 import { PromptService } from '../prompts/promptTemplates';
 import { env } from '../config/environment';
@@ -30,7 +33,9 @@ export class RetrieverService {
     private groqService: GroqService
   ) {}
 
-  public async retrieve(options: RetrievalOptions): Promise<RetrievalResult> {
+  public async retrieve(
+    options: RetrievalOptions
+  ): Promise<RetrievalResult> {
     const {
       query,
       chatHistory,
@@ -44,15 +49,26 @@ export class RetrieverService {
     let targetQuery = query;
     let rephrasedQuery: string | undefined = undefined;
 
-    // 1. History-aware rephrasing if conversational history exists
-    if (chatHistory && chatHistory !== 'None' && chatHistory.trim().length > 0) {
+    /*
+     * ------------------------------------------------------------
+     * HISTORY-AWARE QUERY REPHRASING
+     * ------------------------------------------------------------
+     */
+
+    if (
+      chatHistory &&
+      chatHistory !== 'None' &&
+      chatHistory.trim().length > 0
+    ) {
       try {
-        const promptInput = await PromptService.REPHRASE_QUESTION_TEMPLATE.format({
-          chat_history: chatHistory,
-          question: query,
-        });
+        const promptInput =
+          await PromptService.REPHRASE_QUESTION_TEMPLATE.format({
+            chat_history: chatHistory,
+            question: query,
+          });
 
         let generated = '';
+
         for await (const chunk of this.groqService.streamCompletion({
           prompt: promptInput,
           maxTokens: 120,
@@ -65,59 +81,159 @@ export class RetrieverService {
         if (
           rephrasedQuery &&
           rephrasedQuery.length > 3 &&
-          !rephrasedQuery.toLowerCase().includes("couldn't find") &&
-          !rephrasedQuery.toLowerCase().includes("could not find")
+          !rephrasedQuery
+            .toLowerCase()
+            .includes("couldn't find") &&
+          !rephrasedQuery
+            .toLowerCase()
+            .includes('could not find')
         ) {
           targetQuery = rephrasedQuery;
-          logger.info(`Rephrased conversational query: "${query}" -> "${targetQuery}"`);
+
+          logger.info(
+            `Rephrased conversational query: "${query}" -> "${targetQuery}"`
+          );
         } else {
-          logger.info(`Rephrased query skipped or invalid, using original query: "${query}"`);
+          logger.info(
+            `Rephrased query skipped or invalid, using original query: "${query}"`
+          );
         }
       } catch (err: unknown) {
-        const message = err instanceof Error ? err.message : String(err);
-        logger.warn(`History-aware rephrasing error: ${message}. Using original query.`);
+        const message =
+          err instanceof Error
+            ? err.message
+            : String(err);
+
+        logger.warn(
+          `History-aware rephrasing error: ${message}. Using original query.`
+        );
       }
     }
 
-    // 2. Generate embedding for query
+    /*
+     * ------------------------------------------------------------
+     * EMBEDDING
+     * ------------------------------------------------------------
+     */
+
     const embedStart = Date.now();
-    const queryVector = await this.embeddingService.embedQuery(targetQuery);
+
+    const queryVector =
+      await this.embeddingService.embedQuery(targetQuery);
+
     const embeddingTimeMs = Date.now() - embedStart;
 
-    // 3. Retrieve vectors from Pinecone (Similarity or MMR)
+    /*
+     * ------------------------------------------------------------
+     * VECTOR SEARCH
+     * ------------------------------------------------------------
+     */
+
     const retrieveStart = Date.now();
+
     let searchResults: VectorSearchResult[];
 
     if (searchType === 'mmr') {
-      searchResults = await this.pineconeService.searchMMR(
-        queryVector,
-        topK,
-        0.5,
-        filter,
-        namespace
-      );
+      searchResults =
+        await this.pineconeService.searchMMR(
+          queryVector,
+          topK,
+          0.5,
+          filter,
+          namespace
+        );
     } else {
-      searchResults = await this.pineconeService.searchVectors(
-        queryVector,
-        topK,
-        filter,
-        namespace
-      );
+      searchResults =
+        await this.pineconeService.searchVectors(
+          queryVector,
+          topK,
+          filter,
+          namespace
+        );
     }
 
-    const retrievalTimeMs = Date.now() - retrieveStart;
+    const retrievalTimeMs =
+      Date.now() - retrieveStart;
 
-    // 4. Context Compression: Filter chunks by similarity threshold
-    const compressedChunks = searchResults.filter((chunk) => {
-      // If score is 0 (uncalculated) or exceeds threshold, include
-      return chunk.score === 0 || chunk.score >= similarityThreshold;
+    /*
+     * ------------------------------------------------------------
+     * DEBUG RETRIEVAL RESULTS
+     * ------------------------------------------------------------
+     *
+     * This is the important part.
+     *
+     * We already know the vector search is finding a result.
+     * Now we verify whether that result actually contains
+     * the document text.
+     */
+
+    logger.info(
+      `DEBUG RETRIEVAL RESULTS: ${searchResults.length} result(s) returned.`
+    );
+
+    searchResults.forEach((chunk, index) => {
+      logger.info(
+        `DEBUG CHUNK ${index + 1}: ` +
+          `id=${chunk.chunkId}, ` +
+          `score=${chunk.score}, ` +
+          `filename=${chunk.metadata?.filename}, ` +
+          `page=${chunk.metadata?.page}, ` +
+          `textLength=${chunk.text?.length || 0}`
+      );
+
+      if (chunk.text && chunk.text.trim().length > 0) {
+        logger.info(
+          `DEBUG CHUNK ${index + 1} TEXT:\n${chunk.text.substring(
+            0,
+            2000
+          )}`
+        );
+      } else {
+        logger.warn(
+          `DEBUG CHUNK ${index + 1}: TEXT IS EMPTY.`
+        );
+
+        logger.info(
+          `DEBUG CHUNK ${index + 1} METADATA:\n${JSON.stringify(
+            chunk.metadata,
+            null,
+            2
+          )}`
+        );
+      }
     });
 
-    // If threshold filtering removes everything, return top 1 chunk to avoid empty context
+    /*
+     * ------------------------------------------------------------
+     * SIMILARITY FILTERING
+     * ------------------------------------------------------------
+     */
+
+    const compressedChunks = searchResults.filter(
+      (chunk) => {
+        return (
+          chunk.score === 0 ||
+          chunk.score >= similarityThreshold
+        );
+      }
+    );
+
     const finalChunks =
       compressedChunks.length > 0
         ? compressedChunks
         : searchResults.slice(0, 1);
+
+    logger.info(
+      `DEBUG FINAL CHUNKS: ${finalChunks.length} chunk(s) selected for context.`
+    );
+
+    finalChunks.forEach((chunk, index) => {
+      logger.info(
+        `DEBUG FINAL CHUNK ${index + 1}: ` +
+          `textLength=${chunk.text?.length || 0}, ` +
+          `score=${chunk.score}`
+      );
+    });
 
     return {
       chunks: finalChunks,
@@ -127,17 +243,53 @@ export class RetrieverService {
     };
   }
 
-  public formatContextForPrompt(chunks: VectorSearchResult[]): string {
-    if (chunks.length === 0) {
+  /*
+   * ------------------------------------------------------------
+   * FORMAT RETRIEVED CHUNKS FOR THE LLM
+   * ------------------------------------------------------------
+   */
+
+  public formatContextForPrompt(
+    chunks: VectorSearchResult[]
+  ): string {
+    if (!chunks || chunks.length === 0) {
+      logger.warn(
+        'formatContextForPrompt received zero chunks.'
+      );
+
       return 'No relevant context found.';
     }
 
-    return chunks
+    const usableChunks = chunks.filter(
+      (chunk) =>
+        chunk.text &&
+        chunk.text.trim().length > 0
+    );
+
+    logger.info(
+      `DEBUG CONTEXT FORMAT: ${chunks.length} retrieved chunk(s), ` +
+        `${usableChunks.length} chunk(s) contain usable text.`
+    );
+
+    if (usableChunks.length === 0) {
+      logger.warn(
+        'All retrieved chunks have empty text. ' +
+          'The vector records contain metadata but no document content.'
+      );
+
+      return 'No relevant context found.';
+    }
+
+    return usableChunks
       .map(
         (chunk, idx) =>
-          `[Chunk ${idx + 1} | Source: ${chunk.metadata.filename} | Page: ${chunk.metadata.page} | Section: ${
+          `[Chunk ${idx + 1} | Source: ${
+            chunk.metadata.filename
+          } | Page: ${chunk.metadata.page} | Section: ${
             chunk.metadata.section
-          } | Score: ${(chunk.score * 100).toFixed(1)}%]\n${chunk.text}`
+          } | Score: ${(chunk.score * 100).toFixed(
+            1
+          )}%]\n${chunk.text}`
       )
       .join('\n\n---\n\n');
   }

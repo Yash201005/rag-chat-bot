@@ -1,8 +1,16 @@
 import React from 'react';
 import { useAppStore } from '../../store/useAppStore';
+import { apiService } from '../../services/api';
 import { ConversationList } from './ConversationList';
 import { ThemeToggle } from '../common/ThemeToggle';
-import { Plus, FileText, Settings, Activity, Cpu, Layers } from 'lucide-react';
+import {
+  Plus,
+  FileText,
+  Settings,
+  Activity,
+  Layers,
+} from 'lucide-react';
+import toast from 'react-hot-toast';
 
 export const Sidebar: React.FC = () => {
   const {
@@ -11,19 +19,37 @@ export const Sidebar: React.FC = () => {
     setUploadDialogOpen,
     setSettingsOpen,
     setMetricsOpen,
-    systemMetrics,
   } = useAppStore();
 
-  const handleNewChat = () => {
-    const newSession = {
-      id: crypto.randomUUID(),
-      title: 'New Conversation',
-      messages: [],
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      namespace: 'default',
-    };
-    addSession(newSession);
+  const handleNewChat = async () => {
+    try {
+      /*
+       * Create the session through the backend first.
+       *
+       * This ensures the session is persisted by the
+       * SessionRepository instead of existing only in
+       * the frontend Zustand state.
+       */
+      const newSession = await apiService.createSession(
+        'New Conversation',
+        'default'
+      );
+
+      /*
+       * Add the backend-created session to the frontend
+       * state and make it the active conversation.
+       */
+      addSession(newSession);
+    } catch (error: unknown) {
+      console.error('Failed to create new conversation:', error);
+
+      const message =
+        error instanceof Error
+          ? error.message
+          : 'Unable to create a new conversation.';
+
+      toast.error(message);
+    }
   };
 
   return (
@@ -35,13 +61,18 @@ export const Sidebar: React.FC = () => {
             <div className="w-8 h-8 rounded-lg bg-sky-500/20 border border-sky-500/40 flex items-center justify-center text-sky-400 font-bold text-base shadow-sm">
               <Layers className="w-4 h-4" />
             </div>
+
             <div>
-              <h2 className="text-sm font-bold text-white tracking-tight">RAG Enterprise</h2>
+              <h2 className="text-sm font-bold text-white tracking-tight">
+                RAG Enterprise
+              </h2>
+
               <span className="text-[10px] text-sky-400 font-medium px-1.5 py-0.5 rounded bg-sky-500/10 border border-sky-500/20">
                 v1.0 Production
               </span>
             </div>
           </div>
+
           <ThemeToggle />
         </div>
 
@@ -68,8 +99,13 @@ export const Sidebar: React.FC = () => {
             <FileText className="w-4 h-4 text-sky-400" />
             <span>Documents ({documents.length})</span>
           </div>
+
           <span className="text-[10px] text-slate-500 font-mono">
-            {documents.reduce((acc, d) => acc + d.chunkCount, 0)} chunks
+            {documents.reduce(
+              (acc, document) => acc + document.chunkCount,
+              0
+            )}{' '}
+            chunks
           </span>
         </button>
 
@@ -82,6 +118,7 @@ export const Sidebar: React.FC = () => {
             <Activity className="w-3.5 h-3.5 text-emerald-400" />
             <span>Metrics</span>
           </button>
+
           <button
             onClick={() => setSettingsOpen(true)}
             className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-slate-900/40 hover:bg-slate-800/60 text-slate-400 hover:text-slate-200 border border-slate-800 transition-colors"

@@ -1,0 +1,249 @@
+[
+  {
+    "id": "default-session",
+    "title": "name",
+    "messages": [
+      {
+        "id": "msg-1788433067632-mlyig",
+        "role": "user",
+        "content": "name",
+        "timestamp": "2026-09-03T10:57:47.632Z"
+      },
+      {
+        "id": "msg-1788433072723-m22oo",
+        "role": "assistant",
+        "content": "Akash K S【Source: Akash K S resume pdf.pdf, Page 1】",
+        "sources": [
+          {
+            "filename": "Akash K S resume pdf.pdf",
+            "page": 1,
+            "chunkId": "59a36f27-bdda-450a-b0bc-81828ef77398-chunk-4-bd6fc5b3",
+            "similarityScore": 98,
+            "textSnippet": "» Built a full-stack smart parking platform using React.js, FastAPI, Camumed 1stiPlacein the Games Maral isckathon\nPostgreSQL, OpenCV, and Leaflet. js. at Innovotsava 2026 for developing PyFury\n. Developed secure RESTHul APIs with JWT authentication, real-time Arena, an AR-based coding battle platform\nparking tracking, and image-based occupancy detection. recognized for technical innovation, software\n* Deployed on Render and Vercel using Git/GitHub for version control and engineering, and implementation excellence.\ncollaboration.\nEDUCATION LaNGUAGES\nB.E. in Computer Science and Engineering English Professional Working Proficiency\nMaharaja Institute of Technology, Mysore a hie\n2023 | Q Mysore\nPre-University Hind| Basic\nBASE PU COLLEGE\n2022-2023 | Q Mysore INTERESTS\nSchool Football\nSwamy Vivekananda Educational Institute Passionate about football and participating in\n2021 | @ Mysore inter-college tournaments.",
+            "section": "OCR Page 1"
+          },
+          {
+            "filename": "Akash K S resume pdf.pdf",
+            "page": 1,
+            "chunkId": "b056882c-533a-4061-b3b5-4f7e162a8683-chunk-4-b3407f6d",
+            "similarityScore": 98,
+            "textSnippet": "» Built a full-stack smart parking platform using React.js, FastAPI, Camumed 1stiPlacein the Games Maral isckathon\nPostgreSQL, OpenCV, and Leaflet. js. at Innovotsava 2026 for developing PyFury\n. Developed secure RESTHul APIs with JWT authentication, real-time Arena, an AR-based coding battle platform\nparking tracking, and image-based occupancy detection. recognized for technical innovation, software\n* Deployed on Render and Vercel using Git/GitHub for version control and engineering, and implementation excellence.\ncollaboration.\nEDUCATION LaNGUAGES\nB.E. in Computer Science and Engineering English Professional Working Proficiency\nMaharaja Institute of Technology, Mysore a hie\n2023 | Q Mysore\nPre-University Hind| Basic\nBASE PU COLLEGE\n2022-2023 | Q Mysore INTERESTS\nSchool Football\nSwamy Vivekananda Educational Institute Passionate about football and participating in\n2021 | @ Mysore inter-college tournaments.",
+            "section": "OCR Page 1"
+          },
+          {
+            "filename": "Akash K S resume pdf.pdf",
+            "page": 1,
+            "chunkId": "59a36f27-bdda-450a-b0bc-81828ef77398-chunk-3-d2f50c89",
+            "similarityScore": 98,
+            "textSnippet": "Lost & Found Portal g iy R\nTechnologies: HTML5, CSS3, JavaScript, Firebase Authentication, Tools & Platforms:\nFirebase Realtime Database\n, : Git, GitHub, Git Flow, Visual Studio Code, Firebase,\n* Developed a web-based Lost & Found Portal for reporting, tracking, and\ng i Postman, Render, Vercel\nmanaging lost items.\n* |Implemented Firebase Authentication and Firebase Realtime Database for , , ji\nsecure authentication and real-time synchronization. Soft Skills:\n* Built a responsive interface with CRUD operations, client-side validation, Problem Solving, Team Collaboration, Communication\nand efficient database management.\nParkFast | Al-Powered Smart Parking Platform KEY ACHIEVEMENTS\nTechnologies: React.js, FastAPI, Python, PostgreSQL, OpenCV, Leaflet.js, Game Development Competition Winner\nJWT, REST APIs, Git, GitHub, Render, Vercel Wiiinas = Gairve Marila, lihavotaava 2026\n» Built a full-stack smart parking platform using React.js, FastAPI, Camumed 1stiPlacein the Games Maral isckathon",
+            "section": "OCR Page 1"
+          },
+          {
+            "filename": "Akash K S resume pdf.pdf",
+            "page": 1,
+            "chunkId": "b056882c-533a-4061-b3b5-4f7e162a8683-chunk-3-78bf6ff9",
+            "similarityScore": 98,
+            "textSnippet": "Lost & Found Portal g iy R\nTechnologies: HTML5, CSS3, JavaScript, Firebase Authentication, Tools & Platforms:\nFirebase Realtime Database\n, : Git, GitHub, Git Flow, Visual Studio Code, Firebase,\n* Developed a web-based Lost & Found Portal for reporting, tracking, and\ng i Postman, Render, Vercel\nmanaging lost items.\n* |Implemented Firebase Authentication and Firebase Realtime Database for , , ji\nsecure authentication and real-time synchronization. Soft Skills:\n* Built a responsive interface with CRUD operations, client-side validation, Problem Solving, Team Collaboration, Communication\nand efficient database management.\nParkFast | Al-Powered Smart Parking Platform KEY ACHIEVEMENTS\nTechnologies: React.js, FastAPI, Python, PostgreSQL, OpenCV, Leaflet.js, Game Development Competition Winner\nJWT, REST APIs, Git, GitHub, Render, Vercel Wiiinas = Gairve Marila, lihavotaava 2026\n» Built a full-stack smart parking platform using React.js, FastAPI, Camumed 1stiPlacein the Games Maral isckathon",
+            "section": "OCR Page 1"
+          }
+        ],
+        "metrics": {
+          "totalResponseTimeMs": 5091,
+          "embeddingTimeMs": 441,
+          "retrievalTimeMs": 2646,
+          "generationTimeMs": 1062,
+          "promptTokens": 943,
+          "completionTokens": 36,
+          "totalTokens": 979
+        },
+        "timestamp": "2026-09-03T10:57:52.723Z"
+      },
+      {
+        "id": "msg-1788433078629-wlb96",
+        "role": "user",
+        "content": "schooling",
+        "timestamp": "2026-09-03T10:57:58.629Z"
+      },
+      {
+        "id": "msg-1788433085527-um22b",
+        "role": "assistant",
+        "content": "**Education / Schooling**\n\n- **B.E. in Computer Science and Engineering** – Maharaja Institute of Technology, Mysore (2023)  \n- **Pre‑University** – BASE PU College, Mysore (2022‑2023)  \n- **School** – Swamy Vivekananda Educational Institute, Mysore (2021)  \n\n[Source: Akash K S resume pdf.pdf, Page 1]",
+        "sources": [
+          {
+            "filename": "Akash K S resume pdf.pdf",
+            "page": 1,
+            "chunkId": "59a36f27-bdda-450a-b0bc-81828ef77398-chunk-1-d4047eab",
+            "similarityScore": 98,
+            "textSnippet": "Computer Science Engineering Student | Software Developer | Al & Full-Stack Development\nt, 7760140366 & akash106010@gmailcom () hittps:/flinkedin.com/infakash-k-s-6136ba344 () https://github.com/Akash780258\nQ Mysore\nSUMMARY SKILLS\nComputer Science Engineering student skilled in Full-Stack Development, Programming Languages:\nAl, and Software Engineering. Proficient in Python, React.js, FastAPI, fafa dy La] Cot. HTMLS. CSS3\nPostgreSQL, Firebase, SQL, OOP, and Data Structures & Algorithms. BOB SNRZCORT AUR CR !\nPassionate about building scalable, user-centric applications and seeking a e rE Lira\nSoftware Engineering Intern role where | can contribute to full-stack aki 4 X d lit :\nsoftware development. React.js, Node. js, Express.js, Django, Three. js,\nFastAPI\nPyFury Arena — Augmented Reality Coding Battle Platform Firebase Authentication, Firebase Realtime Database,\nTechnologies: React.js, JavaScript, Firebase Authentication, Firebase MySQL, PostgreSQL, MongoDB",
+            "section": "OCR Page 1"
+          },
+          {
+            "filename": "Akash K S resume pdf.pdf",
+            "page": 1,
+            "chunkId": "b056882c-533a-4061-b3b5-4f7e162a8683-chunk-1-d72cb737",
+            "similarityScore": 98,
+            "textSnippet": "Computer Science Engineering Student | Software Developer | Al & Full-Stack Development\nt, 7760140366 & akash106010@gmailcom () hittps:/flinkedin.com/infakash-k-s-6136ba344 () https://github.com/Akash780258\nQ Mysore\nSUMMARY SKILLS\nComputer Science Engineering student skilled in Full-Stack Development, Programming Languages:\nAl, and Software Engineering. Proficient in Python, React.js, FastAPI, fafa dy La] Cot. HTMLS. CSS3\nPostgreSQL, Firebase, SQL, OOP, and Data Structures & Algorithms. BOB SNRZCORT AUR CR !\nPassionate about building scalable, user-centric applications and seeking a e rE Lira\nSoftware Engineering Intern role where | can contribute to full-stack aki 4 X d lit :\nsoftware development. React.js, Node. js, Express.js, Django, Three. js,\nFastAPI\nPyFury Arena — Augmented Reality Coding Battle Platform Firebase Authentication, Firebase Realtime Database,\nTechnologies: React.js, JavaScript, Firebase Authentication, Firebase MySQL, PostgreSQL, MongoDB",
+            "section": "OCR Page 1"
+          },
+          {
+            "filename": "Akash K S resume pdf.pdf",
+            "page": 1,
+            "chunkId": "59a36f27-bdda-450a-b0bc-81828ef77398-chunk-4-bd6fc5b3",
+            "similarityScore": 98,
+            "textSnippet": "» Built a full-stack smart parking platform using React.js, FastAPI, Camumed 1stiPlacein the Games Maral isckathon\nPostgreSQL, OpenCV, and Leaflet. js. at Innovotsava 2026 for developing PyFury\n. Developed secure RESTHul APIs with JWT authentication, real-time Arena, an AR-based coding battle platform\nparking tracking, and image-based occupancy detection. recognized for technical innovation, software\n* Deployed on Render and Vercel using Git/GitHub for version control and engineering, and implementation excellence.\ncollaboration.\nEDUCATION LaNGUAGES\nB.E. in Computer Science and Engineering English Professional Working Proficiency\nMaharaja Institute of Technology, Mysore a hie\n2023 | Q Mysore\nPre-University Hind| Basic\nBASE PU COLLEGE\n2022-2023 | Q Mysore INTERESTS\nSchool Football\nSwamy Vivekananda Educational Institute Passionate about football and participating in\n2021 | @ Mysore inter-college tournaments.",
+            "section": "OCR Page 1"
+          },
+          {
+            "filename": "Akash K S resume pdf.pdf",
+            "page": 1,
+            "chunkId": "b056882c-533a-4061-b3b5-4f7e162a8683-chunk-4-b3407f6d",
+            "similarityScore": 98,
+            "textSnippet": "» Built a full-stack smart parking platform using React.js, FastAPI, Camumed 1stiPlacein the Games Maral isckathon\nPostgreSQL, OpenCV, and Leaflet. js. at Innovotsava 2026 for developing PyFury\n. Developed secure RESTHul APIs with JWT authentication, real-time Arena, an AR-based coding battle platform\nparking tracking, and image-based occupancy detection. recognized for technical innovation, software\n* Deployed on Render and Vercel using Git/GitHub for version control and engineering, and implementation excellence.\ncollaboration.\nEDUCATION LaNGUAGES\nB.E. in Computer Science and Engineering English Professional Working Proficiency\nMaharaja Institute of Technology, Mysore a hie\n2023 | Q Mysore\nPre-University Hind| Basic\nBASE PU COLLEGE\n2022-2023 | Q Mysore INTERESTS\nSchool Football\nSwamy Vivekananda Educational Institute Passionate about football and participating in\n2021 | @ Mysore inter-college tournaments.",
+            "section": "OCR Page 1"
+          }
+        ],
+        "metrics": {
+          "totalResponseTimeMs": 6898,
+          "embeddingTimeMs": 2942,
+          "retrievalTimeMs": 2059,
+          "generationTimeMs": 1242,
+          "promptTokens": 929,
+          "completionTokens": 168,
+          "totalTokens": 1097
+        },
+        "timestamp": "2026-09-03T10:58:05.527Z"
+      }
+    ],
+    "createdAt": "2026-09-03T10:56:39.028Z",
+    "updatedAt": "2026-09-03T10:58:05.527Z",
+    "namespace": "default"
+  },
+  {
+    "id": "fbfe3247-8e45-4cca-af3d-1f94eece9f1c",
+    "title": "b.e.",
+    "messages": [
+      {
+        "id": "msg-1788433095378-3mumf",
+        "role": "user",
+        "content": "b.e.",
+        "timestamp": "2026-09-03T10:58:15.378Z"
+      },
+      {
+        "id": "msg-1788433100116-9iw9f",
+        "role": "assistant",
+        "content": "The candidate holds a **B.E. in Computer Science and Engineering** from **Maharaja Institute of Technology, Mysore**, completed in **2023**.  \n[Source: Akash K S resume pdf.pdf, Page 1]",
+        "sources": [
+          {
+            "filename": "Akash K S resume pdf.pdf",
+            "page": 1,
+            "chunkId": "59a36f27-bdda-450a-b0bc-81828ef77398-chunk-4-bd6fc5b3",
+            "similarityScore": 98,
+            "textSnippet": "» Built a full-stack smart parking platform using React.js, FastAPI, Camumed 1stiPlacein the Games Maral isckathon\nPostgreSQL, OpenCV, and Leaflet. js. at Innovotsava 2026 for developing PyFury\n. Developed secure RESTHul APIs with JWT authentication, real-time Arena, an AR-based coding battle platform\nparking tracking, and image-based occupancy detection. recognized for technical innovation, software\n* Deployed on Render and Vercel using Git/GitHub for version control and engineering, and implementation excellence.\ncollaboration.\nEDUCATION LaNGUAGES\nB.E. in Computer Science and Engineering English Professional Working Proficiency\nMaharaja Institute of Technology, Mysore a hie\n2023 | Q Mysore\nPre-University Hind| Basic\nBASE PU COLLEGE\n2022-2023 | Q Mysore INTERESTS\nSchool Football\nSwamy Vivekananda Educational Institute Passionate about football and participating in\n2021 | @ Mysore inter-college tournaments.",
+            "section": "OCR Page 1"
+          },
+          {
+            "filename": "Akash K S resume pdf.pdf",
+            "page": 1,
+            "chunkId": "b056882c-533a-4061-b3b5-4f7e162a8683-chunk-4-b3407f6d",
+            "similarityScore": 98,
+            "textSnippet": "» Built a full-stack smart parking platform using React.js, FastAPI, Camumed 1stiPlacein the Games Maral isckathon\nPostgreSQL, OpenCV, and Leaflet. js. at Innovotsava 2026 for developing PyFury\n. Developed secure RESTHul APIs with JWT authentication, real-time Arena, an AR-based coding battle platform\nparking tracking, and image-based occupancy detection. recognized for technical innovation, software\n* Deployed on Render and Vercel using Git/GitHub for version control and engineering, and implementation excellence.\ncollaboration.\nEDUCATION LaNGUAGES\nB.E. in Computer Science and Engineering English Professional Working Proficiency\nMaharaja Institute of Technology, Mysore a hie\n2023 | Q Mysore\nPre-University Hind| Basic\nBASE PU COLLEGE\n2022-2023 | Q Mysore INTERESTS\nSchool Football\nSwamy Vivekananda Educational Institute Passionate about football and participating in\n2021 | @ Mysore inter-college tournaments.",
+            "section": "OCR Page 1"
+          },
+          {
+            "filename": "Akash K S resume pdf.pdf",
+            "page": 1,
+            "chunkId": "59a36f27-bdda-450a-b0bc-81828ef77398-chunk-1-d4047eab",
+            "similarityScore": 98,
+            "textSnippet": "Computer Science Engineering Student | Software Developer | Al & Full-Stack Development\nt, 7760140366 & akash106010@gmailcom () hittps:/flinkedin.com/infakash-k-s-6136ba344 () https://github.com/Akash780258\nQ Mysore\nSUMMARY SKILLS\nComputer Science Engineering student skilled in Full-Stack Development, Programming Languages:\nAl, and Software Engineering. Proficient in Python, React.js, FastAPI, fafa dy La] Cot. HTMLS. CSS3\nPostgreSQL, Firebase, SQL, OOP, and Data Structures & Algorithms. BOB SNRZCORT AUR CR !\nPassionate about building scalable, user-centric applications and seeking a e rE Lira\nSoftware Engineering Intern role where | can contribute to full-stack aki 4 X d lit :\nsoftware development. React.js, Node. js, Express.js, Django, Three. js,\nFastAPI\nPyFury Arena — Augmented Reality Coding Battle Platform Firebase Authentication, Firebase Realtime Database,\nTechnologies: React.js, JavaScript, Firebase Authentication, Firebase MySQL, PostgreSQL, MongoDB",
+            "section": "OCR Page 1"
+          },
+          {
+            "filename": "Akash K S resume pdf.pdf",
+            "page": 1,
+            "chunkId": "b056882c-533a-4061-b3b5-4f7e162a8683-chunk-1-d72cb737",
+            "similarityScore": 98,
+            "textSnippet": "Computer Science Engineering Student | Software Developer | Al & Full-Stack Development\nt, 7760140366 & akash106010@gmailcom () hittps:/flinkedin.com/infakash-k-s-6136ba344 () https://github.com/Akash780258\nQ Mysore\nSUMMARY SKILLS\nComputer Science Engineering student skilled in Full-Stack Development, Programming Languages:\nAl, and Software Engineering. Proficient in Python, React.js, FastAPI, fafa dy La] Cot. HTMLS. CSS3\nPostgreSQL, Firebase, SQL, OOP, and Data Structures & Algorithms. BOB SNRZCORT AUR CR !\nPassionate about building scalable, user-centric applications and seeking a e rE Lira\nSoftware Engineering Intern role where | can contribute to full-stack aki 4 X d lit :\nsoftware development. React.js, Node. js, Express.js, Django, Three. js,\nFastAPI\nPyFury Arena — Augmented Reality Coding Battle Platform Firebase Authentication, Firebase Realtime Database,\nTechnologies: React.js, JavaScript, Firebase Authentication, Firebase MySQL, PostgreSQL, MongoDB",
+            "section": "OCR Page 1"
+          }
+        ],
+        "metrics": {
+          "totalResponseTimeMs": 4738,
+          "embeddingTimeMs": 1348,
+          "retrievalTimeMs": 1773,
+          "generationTimeMs": 769,
+          "promptTokens": 912,
+          "completionTokens": 94,
+          "totalTokens": 1006
+        },
+        "timestamp": "2026-09-03T10:58:20.116Z"
+      }
+    ],
+    "createdAt": "2026-09-03T10:58:00.265Z",
+    "updatedAt": "2026-09-03T10:58:20.116Z",
+    "namespace": "default"
+  },
+  {
+    "id": "ada7ea9b-1651-4534-86be-8a103594dd78",
+    "title": "listed projects",
+    "messages": [
+      {
+        "id": "msg-1788433122364-s5ipm",
+        "role": "user",
+        "content": "listed projects",
+        "timestamp": "2026-09-03T10:58:42.364Z"
+      },
+      {
+        "id": "msg-1788433126843-hkuz8",
+        "role": "assistant",
+        "content": "**Projects listed in the provided documents**\n\n- **AR‑based coding battle platform** – Built with Three.js, WebXR, Firebase, and Node.js; includes real‑time multiplayer, authentication, matchmaking, and a Python code‑evaluation pipeline.  \n  *[Source: Akash K S resume pdf.pdf, Page 1]*  \n\n- **Lost & Found Portal** – Web‑based application for reporting, tracking, and managing lost items; implemented with HTML5, CSS3, JavaScript, Firebase Authentication, and Firebase Realtime Database, featuring a responsive CRUD interface.  \n  *[Source: Akash K S resume pdf.pdf, Page 1]*  \n\n- **ParkFast – AI‑Powered Smart Parking Platform** – Full‑stack smart parking solution using React.js, FastAPI, Python, PostgreSQL, OpenCV, and Leaflet.js; includes JWT authentication, REST APIs, and deployment on Render/Vercel.  \n  *[Source: Akash K S resume pdf.pdf, Page 1]*  ",
+        "sources": [
+          {
+            "filename": "Akash K S resume pdf.pdf",
+            "page": 1,
+            "chunkId": "59a36f27-bdda-450a-b0bc-81828ef77398-chunk-2-b9bcd25e",
+            "similarityScore": 98,
+            "textSnippet": "Technologies: React.js, JavaScript, Firebase Authentication, Firebase MySQL, PostgreSQL, MongoDB\nRealtime Database, Three.js, WebXR, Node.js, HTML5, C553 : hs AL\n+ Built an AR-based coding battle platform using Three.js, WebXR, and Core Computer Science:\nFirebase. Data Structures & Algorithms, Object-Oriented\n» Developed real-time multiplayer, authentication, matchmaking, and Programming (OOP), Database Management\nsynchronized gameplay. Systems (DBMS), Operating Systems,\n+ Implemented a Python code evaluation pipeline for automated, Computer Networks\nperformance-based battle outcomes.\n* Designed a scalable modular architecture with efficient state Al & Machine Learning:\nmanagement. Machine Learning Fundamentals, Data Preprocessing,\nModel Development, Al Application Development\nLost & Found Portal g iy R\nTechnologies: HTML5, CSS3, JavaScript, Firebase Authentication, Tools & Platforms:\nFirebase Realtime Database\n, : Git, GitHub, Git Flow, Visual Studio Code, Firebase,",
+            "section": "OCR Page 1"
+          },
+          {
+            "filename": "Akash K S resume pdf.pdf",
+            "page": 1,
+            "chunkId": "b056882c-533a-4061-b3b5-4f7e162a8683-chunk-2-d52717c4",
+            "similarityScore": 98,
+            "textSnippet": "Technologies: React.js, JavaScript, Firebase Authentication, Firebase MySQL, PostgreSQL, MongoDB\nRealtime Database, Three.js, WebXR, Node.js, HTML5, C553 : hs AL\n+ Built an AR-based coding battle platform using Three.js, WebXR, and Core Computer Science:\nFirebase. Data Structures & Algorithms, Object-Oriented\n» Developed real-time multiplayer, authentication, matchmaking, and Programming (OOP), Database Management\nsynchronized gameplay. Systems (DBMS), Operating Systems,\n+ Implemented a Python code evaluation pipeline for automated, Computer Networks\nperformance-based battle outcomes.\n* Designed a scalable modular architecture with efficient state Al & Machine Learning:\nmanagement. Machine Learning Fundamentals, Data Preprocessing,\nModel Development, Al Application Development\nLost & Found Portal g iy R\nTechnologies: HTML5, CSS3, JavaScript, Firebase Authentication, Tools & Platforms:\nFirebase Realtime Database\n, : Git, GitHub, Git Flow, Visual Studio Code, Firebase,",
+            "section": "OCR Page 1"
+          },
+          {
+            "filename": "Akash K S resume pdf.pdf",
+            "page": 1,
+            "chunkId": "b056882c-533a-4061-b3b5-4f7e162a8683-chunk-3-78bf6ff9",
+            "similarityScore": 98,
+            "textSnippet": "Lost & Found Portal g iy R\nTechnologies: HTML5, CSS3, JavaScript, Firebase Authentication, Tools & Platforms:\nFirebase Realtime Database\n, : Git, GitHub, Git Flow, Visual Studio Code, Firebase,\n* Developed a web-based Lost & Found Portal for reporting, tracking, and\ng i Postman, Render, Vercel\nmanaging lost items.\n* |Implemented Firebase Authentication and Firebase Realtime Database for , , ji\nsecure authentication and real-time synchronization. Soft Skills:\n* Built a responsive interface with CRUD operations, client-side validation, Problem Solving, Team Collaboration, Communication\nand efficient database management.\nParkFast | Al-Powered Smart Parking Platform KEY ACHIEVEMENTS\nTechnologies: React.js, FastAPI, Python, PostgreSQL, OpenCV, Leaflet.js, Game Development Competition Winner\nJWT, REST APIs, Git, GitHub, Render, Vercel Wiiinas = Gairve Marila, lihavotaava 2026\n» Built a full-stack smart parking platform using React.js, FastAPI, Camumed 1stiPlacein the Games Maral isckathon",
+            "section": "OCR Page 1"
+          },
+          {
+            "filename": "Akash K S resume pdf.pdf",
+            "page": 1,
+            "chunkId": "59a36f27-bdda-450a-b0bc-81828ef77398-chunk-3-d2f50c89",
+            "similarityScore": 98,
+            "textSnippet": "Lost & Found Portal g iy R\nTechnologies: HTML5, CSS3, JavaScript, Firebase Authentication, Tools & Platforms:\nFirebase Realtime Database\n, : Git, GitHub, Git Flow, Visual Studio Code, Firebase,\n* Developed a web-based Lost & Found Portal for reporting, tracking, and\ng i Postman, Render, Vercel\nmanaging lost items.\n* |Implemented Firebase Authentication and Firebase Realtime Database for , , ji\nsecure authentication and real-time synchronization. Soft Skills:\n* Built a responsive interface with CRUD operations, client-side validation, Problem Solving, Team Collaboration, Communication\nand efficient database management.\nParkFast | Al-Powered Smart Parking Platform KEY ACHIEVEMENTS\nTechnologies: React.js, FastAPI, Python, PostgreSQL, OpenCV, Leaflet.js, Game Development Competition Winner\nJWT, REST APIs, Git, GitHub, Render, Vercel Wiiinas = Gairve Marila, lihavotaava 2026\n» Built a full-stack smart parking platform using React.js, FastAPI, Camumed 1stiPlacein the Games Maral isckathon",
+            "section": "OCR Page 1"
+          }
+        ],
+        "metrics": {
+          "totalResponseTimeMs": 4479,
+          "embeddingTimeMs": 482,
+          "retrievalTimeMs": 1836,
+          "generationTimeMs": 1272,
+          "promptTokens": 948,
+          "completionTokens": 394,
+          "totalTokens": 1342
+        },
+        "timestamp": "2026-09-03T10:58:46.843Z"
+      }
+    ],
+    "createdAt": "2026-09-03T10:58:36.749Z",
+    "updatedAt": "2026-09-03T10:58:46.843Z",
+    "namespace": "default"
+  }
+]
